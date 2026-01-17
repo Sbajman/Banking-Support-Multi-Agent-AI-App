@@ -1,12 +1,12 @@
 
-## Banking Support AI Agent
+## Banking Support Multi-Agent AI App
 ** A POC Banking Support Multi-agent GenAI system tailored for banking customer support workflows **  
 
 The objective is to design and implement a multi-agent AI assistant that handles:
 
 This model aims to:
 
-* Classification of incoming user messages into feedback (positive or negative) or queries
+* Classify incoming user messages as queries/feedback and determine the associated sentiment  (positive or negative)
 * Personalized responses based on classification and user sentiment
 * Ticket tracking and updates through integration with a support database
 
@@ -65,11 +65,8 @@ sequenceDiagram
 ## TECH STACK
 Python 3.11
 
-Streamlit – Interactive chat UI
-FastAPI – Backend API framework
-Ollama – Local LLM server
-Docker & Docker Compose – Containerization and orchestration
-LangGraph / LangChain Community – AI agent orchestration
+FastAPI · LangGraph · LangChain · Ollama · Streamlit · Docker · Pytest
+
 
 ## Setup & Installation
 
@@ -128,3 +125,14 @@ The Tests included:
 1. Classify state propagation: Assert on the sentiment of user message
 2. Test Response generation
 3. Test ticket generation for negative feedback. No ticket should be generated for positive feedback.
+
+Future Improvement:
+1. AI & Agent Intelligence: Add confidence scores for intent and sentiment, 
+Introduce short term/Long term memory to store multi-turn conversations,
+Enable agents to call external tools(Account status, Card API, FAQ's..etc)
+combine lightweight rules with LLM classification for faster more deterministic behavior.
+2. System Architecture: Add support for Async and streaming responses.
+3. Testing and Quality: Enhance the test coverage.
+4. Enhance Observability & Monitoring, Security Compliance, MLOps CI/CD deployment.
+5. Enhance Product and UX.
+6. Fine tune Banking specific LLM for higher accuracy and consistency.
