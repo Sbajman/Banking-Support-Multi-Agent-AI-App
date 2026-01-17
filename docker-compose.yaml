@@ -1,0 +1,71 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: banking-ai-api
+    environment:
+      # Use the Docker service name 'ollama'
+      - OLLAMA_HOST=http://ollama:11434
+    ports:
+      - "8000:8000"
+    depends_on:
+      - ollama
+         #condition: service_healthy
+    networks:
+      - banking-net
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: banking-ai-ui
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+    networks:
+      - banking-net
+
+  ollama:
+    build:
+      context: ./.docker/ollama
+      dockerfile: Dockerfile
+    container_name: banking-ai-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - banking-net
+  
+  # test:
+  # build:
+  #   context: .
+  #   dockerfile: Dockerfile
+  # container_name: banking-ai-tests
+  # command: pytest -v --disable-warnings
+  # environment:
+  #   - PYTHONPATH=/app
+  # depends_on:
+  #   api:
+  #     condition: service_healthy
+  #   ollama:
+  #     condition: service_healthy
+
+
+
+
+# Define named volumes
+volumes:
+  ollama-data:
+
+networks:
+  banking-net:
+    driver: bridge

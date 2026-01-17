@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+langgraph==0.0.8
+langchain==0.1.20
+langchain-community
+streamlit
+requests
+pytest
+pytest-mock
