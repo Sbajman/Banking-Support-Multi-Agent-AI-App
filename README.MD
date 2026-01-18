@@ -72,7 +72,7 @@ FastAPI · LangGraph · LangChain · Ollama · Streamlit · Docker · Pytest
 
 ```
 Clone the repository:
-git clone https://github.com/yourusername/banking-support-ai.git
+git clone https://github.com/Sbajman/banking-support-ai.git
 cd banking-support-ai
 ```
 
@@ -105,7 +105,8 @@ http://localhost:8501
 
 Type a banking support query in the customer chatbox.
 The AI agent classifies the message and generates a response.
-Responses from Agents appear in the chat window under Agent:
+Responses from Agents appear in the chat window 
+under Agent: you have the user query and
 Customer messages appear under Customer:
 
 ![alt text](image-1.png)
